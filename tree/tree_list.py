@@ -50,13 +50,18 @@ def setRootVal(tree, value):
     tree[0] = value
 
 
+def buildTree():
+    tree = binaryTree('a')
+    insertLeft(tree, 'b')
+    insertRight(getLeftChild(tree), 'd')
+
+    insertRight(tree, 'c')
+    insertLeft(getRightChild(tree), 'e')
+    insertRight(getRightChild(tree), 'f')
+    return tree
+
 def main():
-    print('-----')
-    tree = binaryTree(1)
-    insertRight(tree, 2)
-    insertRight(tree, 3)
-    
-    print(tree)
+    print(buildTree())
 
 if __name__ == '__main__':
     main()
