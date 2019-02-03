@@ -57,6 +57,18 @@ def evaluate(parseTree):
     else:
         return int(parseTree.getRootVal())
 
+def postorderedeval(tree):
+    opers = {'+': operator.add, '-': operator.sub, '*': operator.mul, '/': operator.div}
+    res1 = None
+    res2 = None
+
+    if tree:
+        res1 = postorderedeval(tree.getLeftChild())
+        res2 = postorderedeval(tree.getRightChild())
+        if res1 and res2:
+            return opers[tree.getRootVal()](res1, res2)
+        else:
+            return int(tree.getRootVal())
 
 def calculateTree(tree):
     if re.match(r'\d', tree.getLeftChild().getRootVal()) and re.match(r'\d', tree.getRightChild().getRootVal()):
@@ -88,7 +100,8 @@ def main():
     tree = buildTree('( ( 10 + 2 ) + 3 )')
     tree.postorder()
     print('---')
-    print(evaluate(tree))
+    # print(evaluate(tree))
+    print(postorderedeval(tree))
 
 if __name__ == '__main__':
     main()
