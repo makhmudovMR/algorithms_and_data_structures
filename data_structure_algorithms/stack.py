@@ -59,7 +59,6 @@ def task2():
         print(stack.pop(), end='')
 
 
-
 def task3():
     pass
 
