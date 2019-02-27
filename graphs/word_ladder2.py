@@ -37,4 +37,35 @@ def bfs(graph):
                 queue.enqueue(nbr)
             visited.append(curr)
 
-bfs(word_ladder())
+
+def my_bfs(g, start):
+    start.setDistance(0)
+    start.setPred(None)
+    vertQueue = Queue()
+    vertQueue.enqueue(start)
+    while vertQueue.size() > 0:
+        currentVert = vertQueue.dequeue()
+        for nbr in currentVert.getConnections():
+            if nbr.getColor() == 'white':
+                nbr.setColor('gray')
+                nbr.setDistance(currentVert.getDistance() + 1)
+                nbr.setPred(currentVert)
+                vertQueue.enqueue(nbr)
+            currentVert.setColor('black')
+    
+
+def main():
+    graph = word_ladder()
+    start = graph.getVertex('FOOL')
+    my_bfs(graph, start)
+    traverse(graph.getVertex('SAGE'))
+
+
+
+def traverse(y):
+    x = y
+    while x.getPred():
+        print(x.getId)
+        x = x.getPred()
+    print(x.getId)
+main()
