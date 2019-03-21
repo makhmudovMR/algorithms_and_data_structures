@@ -1,3 +1,7 @@
+'''
+Wrong
+'''
+
 h_s, m_s = map(int, input().split(':'))
 h_e, m_e = map(int, input().split(':'))
 
